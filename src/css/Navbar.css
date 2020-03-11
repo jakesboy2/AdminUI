@@ -1,0 +1,22 @@
+.NavbarBody {
+    list-style-type: none;
+    display: flex;
+}
+
+.NavbarItem {
+    text-decoration: none;
+    color: black;
+    padding: 12px 30px;
+    transition: 0.2s;
+    border-radius: 4px;
+}
+
+nav {
+    background-color: rgb(238, 235, 213);
+    color: black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 8vh;
+    border-bottom: 1px solid rgb(203, 202, 202);;
+}

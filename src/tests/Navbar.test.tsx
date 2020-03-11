@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import Navbar from '../Navbar';
+import { render, getAllByDisplayValue } from '@testing-library/react';
+import Navbar from '../components/Navbar';
 
-test('should fail', () => {
-  const { getAllByText } = render(<Navbar />);
-  const header = getAllByText("NavbarItemHere");
-  header.forEach((h) => {
-      expect(h).toBeInTheDocument();
-  });
+test('Checks for the correct links', () => {
+    const { getByText } = render(<Navbar handleClick={() => {}}/>);
+    const manageUsersLink = getByText("Manage Users")
+    const manageCitationsLink = getByText("Manage Citations")
+    expect(manageUsersLink).toBeInTheDocument();
+    expect(manageCitationsLink).toBeInTheDocument();
 });
