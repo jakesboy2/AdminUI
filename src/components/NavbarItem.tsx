@@ -9,7 +9,7 @@ interface NavbarItemProps {
 function NavbarItem(props: NavbarItemProps) {
     return (
         <div>
-            <li className="NavbarItem" onClick={() => props.handleClick(props.name)}>{props.name}</li>
+            <li className="NavbarItem" onClick={() => props.handleClick(props.name)}><span>{props.name}</span></li>
         </div>
     );
 }

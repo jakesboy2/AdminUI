@@ -1,0 +1,19 @@
+.center-div {
+    text-align: center;
+}
+
+hr {
+    width: 30%;
+}
+
+.card-1 {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    background-image: initial;
+    background-color: rgba(252, 252, 252);
+    padding-bottom: 4%;
+    padding-top: 2px;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+}

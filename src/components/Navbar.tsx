@@ -15,7 +15,7 @@ class Navbar extends React.Component<NavbarProps> {
         return (
             <nav>
                 <header>
-                    <h1>Admin Interface</h1>
+                    <h1>Admin UI</h1>
                 </header>
                 <ul className="NavbarBody">
                     <NavbarItem name="Manage Users" handleClick={this.props.handleClick} />
