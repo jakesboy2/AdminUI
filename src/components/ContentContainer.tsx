@@ -1,5 +1,8 @@
 import React from 'react';
 import '../css/ContentContainer.css'
+import CreateButton from './CreateButton';
+import EditButton from './EditButton';
+import DeleteButton from './DeleteButton';
 
 interface ContentContainerProps {
     content: string;
@@ -12,12 +15,39 @@ class ContentContainer extends React.Component<ContentContainerProps, ContentCon
         this.DisplayTable = this.DisplayTable.bind(this);
     }
 
+    handleCreateClickUsers() {
+        console.log("create users");
+    }
+
+    handleCreateClickCitations() {
+        console.log("create citations");
+    }
+
+    handleEditClickUsers() {
+        console.log("edit users");
+    }
+
+    handleEditClickCitations() {
+        console.log("edit citations");
+    }
+
+    handleDeleteClickUsers() {
+        console.log("delete users");
+    }
+
+    handleDeleteClickCitations() {
+        console.log("delete citations");
+    }
+
     DisplayTable() {
         if(this.props.content === 'users') {
             return (
                 <div className="card-1">
                     <h1>Manage Users</h1>
                     <hr/>
+                    <CreateButton content={this.props.content} handleClick={this.handleCreateClickUsers} />
+                    <EditButton content={this.props.content} handleClick={this.handleEditClickUsers} />
+                    <DeleteButton content={this.props.content} handleClick={this.handleDeleteClickUsers} />
                 </div>
             );
         }
@@ -26,6 +56,9 @@ class ContentContainer extends React.Component<ContentContainerProps, ContentCon
                 <div className="card-1">
                     <h1>Manage Citations</h1>
                     <hr/>
+                    <CreateButton content={this.props.content} handleClick={this.handleCreateClickCitations} />
+                    <EditButton content={this.props.content} handleClick={this.handleEditClickCitations} />
+                    <DeleteButton content={this.props.content} handleClick={this.handleDeleteClickCitations} />
                 </div>
             );
         }
