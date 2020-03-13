@@ -1,6 +1,5 @@
 import React from 'react';
 import '../css/DataTable.css';
-import { rosybrown } from 'color-name';
 
 interface UserRowProps {
     user: {id: string, first_name: string, last_name: string};

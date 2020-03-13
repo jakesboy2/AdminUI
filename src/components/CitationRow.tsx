@@ -2,7 +2,7 @@ import React from 'react';
 import '../css/DataTable.css';
 
 interface CitationRowProps {
-    citation: {id: string, citationNumber: string, dateGiven: string, givenBy: string};
+    citation: {id: string, citation_number: string, date_given: string, given_by: string};
 }
 
 interface CitationRowState {}
@@ -12,9 +12,9 @@ class CitationRow extends React.Component<CitationRowProps, CitationRowState> {
         return (
             <tr key={this.props.citation.id}>
                 <td>{this.props.citation.id}</td>
-                <td>{this.props.citation.citationNumber}</td>
-                <td>{this.props.citation.dateGiven}</td>
-                <td>{this.props.citation.givenBy}</td>
+                <td>{this.props.citation.citation_number}</td>
+                <td>{this.props.citation.date_given}</td>
+                <td>{this.props.citation.given_by}</td>
             </tr>
         );
     }

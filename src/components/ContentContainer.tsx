@@ -10,7 +10,7 @@ interface ContentContainerProps {
 }
 interface ContentContainerState {
     user: {id: string, first_name: string, last_name: string}[];
-    citation: {id: string, citationNumber: string, dateGiven: string, givenBy: string}[];
+    citation: {id: string, citation_number: string, date_given: string, given_by: string}[];
 }
 
 class ContentContainer extends React.Component<ContentContainerProps, ContentContainerState> {
@@ -74,6 +74,26 @@ class ContentContainer extends React.Component<ContentContainerProps, ContentCon
     }
 
     componentDidMount() {
+        fetch('https://www.jacobwaldrip.com/api/v1/users/', {
+            headers: new Headers( {
+              'Authorization': 'Basic ' + btoa('bobbybones:Welcome1!'),
+            }),
+            credentials: 'same-origin',
+            method: 'GET',
+            })
+            .then((res) => res.json())
+            .then((json: any[]) => {
+                const users = json as {id: string, first_name: string, last_name: string}[];
+                this.setState({user: users});
+            });
+    }
+
+    componentDidUpdate(prevProps: ContentContainerProps, prevState: ContentContainerState) {
+        const { content } = this.props;
+        if(content === prevProps.content) {
+            return;
+        }
+
         if(this.props.content === 'users') {
             fetch('https://www.jacobwaldrip.com/api/v1/users/', {
             headers: new Headers( {
@@ -85,9 +105,7 @@ class ContentContainer extends React.Component<ContentContainerProps, ContentCon
             .then((res) => res.json())
             .then((json: any[]) => {
                 const users = json as {id: string, first_name: string, last_name: string}[];
-                this.setState({
-                    user: users
-                })
+                this.setState({user: users});
             });
         }
         else if (this.props.content === 'citations') {
@@ -100,10 +118,8 @@ class ContentContainer extends React.Component<ContentContainerProps, ContentCon
             })
             .then((res) => res.json())
             .then((json: any[]) => {
-                const citations = json as {id: string, citationNumber: string, dateGiven: string, givenBy: string}[];
-                this.setState({
-                    citation: citations
-                })
+                const citations = json as {id: string, citation_number: string, date_given: string, given_by: string}[];
+                this.setState({citation: citations});
             });
         }
     }

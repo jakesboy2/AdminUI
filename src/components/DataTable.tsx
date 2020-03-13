@@ -7,7 +7,7 @@ import CitationRow from './CitationRow'
 interface DataTableProps {
     content: string,
     users: {id: string, first_name: string, last_name: string}[],
-    citations: {id: string, citationNumber: string, dateGiven: string, givenBy: string}[]
+    citations: {id: string, citation_number: string, date_given: string, given_by: string}[]
 }
 
 interface DataTableState {}
@@ -62,7 +62,6 @@ class DataTable extends React.Component<DataTableProps, DataTableState> {
 
     getDataCitations() {
         return this.props.citations.map((row, index) => {
-            console.log('row', row);
             return (
                 <CitationRow key={row.id} citation={row} />
             );
