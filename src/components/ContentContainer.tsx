@@ -8,12 +8,19 @@ import DataTable from './DataTable';
 interface ContentContainerProps {
     content: string;
 }
-interface ContentContainerState {}
+interface ContentContainerState {
+    user: {id: string, first_name: string, last_name: string}[];
+    citation: {id: string, citationNumber: string, dateGiven: string, givenBy: string}[];
+}
 
 class ContentContainer extends React.Component<ContentContainerProps, ContentContainerState> {
     constructor(props: ContentContainerProps) {
         super(props);
         this.DisplayTable = this.DisplayTable.bind(this);
+        this.state = {
+            user: [],
+            citation: []
+        }
     }
 
     handleCreateClickUsers() {
@@ -41,7 +48,7 @@ class ContentContainer extends React.Component<ContentContainerProps, ContentCon
     }
 
     DisplayTable() {
-        if(this.props.content === 'users') {
+        if (this.props.content === 'users') {
             return (
                 <div>
                     <h1>Manage Users</h1>
@@ -66,12 +73,47 @@ class ContentContainer extends React.Component<ContentContainerProps, ContentCon
         return null;
     }
 
+    componentDidMount() {
+        if(this.props.content === 'users') {
+            fetch('https://www.jacobwaldrip.com/api/v1/users/', {
+            headers: new Headers( {
+              'Authorization': 'Basic ' + btoa('bobbybones:Welcome1!'),
+            }),
+            credentials: 'same-origin',
+            method: 'GET',
+            })
+            .then((res) => res.json())
+            .then((json: any[]) => {
+                const users = json as {id: string, first_name: string, last_name: string}[];
+                this.setState({
+                    user: users
+                })
+            });
+        }
+        else if (this.props.content === 'citations') {
+            fetch('https://www.jacobwaldrip.com/api/v1/citations/', {
+            headers: new Headers( {
+              'Authorization': 'Basic ' + btoa('bobbybones:Welcome1!'),
+            }),
+            credentials: 'same-origin',
+            method: 'GET',
+            })
+            .then((res) => res.json())
+            .then((json: any[]) => {
+                const citations = json as {id: string, citationNumber: string, dateGiven: string, givenBy: string}[];
+                this.setState({
+                    citation: citations
+                })
+            });
+        }
+    }
+
     render() {
         return (
             <div className="center-div card-1">
                 <this.DisplayTable />
                 <br/>
-                <DataTable content={this.props.content} />
+                <DataTable content={this.props.content} users={this.state.user} citations={this.state.citation}/>
             </div>
         );
     }

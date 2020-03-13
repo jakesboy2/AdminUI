@@ -1,9 +1,13 @@
 import React from 'react';
 import '../css/DataTable.css';
+import UserRow from './UserRow';
+import CitationRow from './CitationRow'
 
 
 interface DataTableProps {
-    content: string;
+    content: string,
+    users: {id: string, first_name: string, last_name: string}[],
+    citations: {id: string, citationNumber: string, dateGiven: string, givenBy: string}[]
 }
 
 interface DataTableState {}
@@ -33,7 +37,7 @@ class DataTable extends React.Component<DataTableProps, DataTableState> {
                     <th>Date Given</th>
                     <th>Given By</th>
                 </tr>
-            );;
+            );
         }
         return null;
     }
@@ -49,31 +53,31 @@ class DataTable extends React.Component<DataTableProps, DataTableState> {
     }
 
     getDataUsers() {
-        return (
-            <tr>
-                <td>1</td>
-                <td>Jake</td>
-                <td>Waldrip</td>
-            </tr>
-        );
+        return this.props.users.map((row, index) => {
+            return (
+                <UserRow key={row.id} user={row} />
+            );
+        });
     }
 
     getDataCitations() {
-        return (
-            <tr>
-                <td>1</td>
-                <td>1248</td>
-                <td>2020</td>
-                <td>Billy</td>
-            </tr>
-        );
+        return this.props.citations.map((row, index) => {
+            console.log('row', row);
+            return (
+                <CitationRow key={row.id} citation={row} />
+            );
+        });
     }
 
     render() {
         return (
             <table className='center-table'>
-                <this.getHeaders />
-                <this.getData />
+                <thead>
+                    <this.getHeaders />
+                </thead>
+                <tbody>
+                    {this.getData()}
+                </tbody>
             </table>
         );
     }

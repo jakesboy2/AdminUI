@@ -13,7 +13,7 @@ class Body extends React.Component<BodyProps, BodyState> {
         super(props);
         this.state = {
             content: 'users'
-        };
+        }
     }
 
     handleClick(clicked: string) {
