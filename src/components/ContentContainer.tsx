@@ -3,6 +3,7 @@ import '../css/ContentContainer.css'
 import CreateButton from './CreateButton';
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
+import DataTable from './DataTable';
 
 interface ContentContainerProps {
     content: string;
@@ -42,7 +43,7 @@ class ContentContainer extends React.Component<ContentContainerProps, ContentCon
     DisplayTable() {
         if(this.props.content === 'users') {
             return (
-                <div className="card-1">
+                <div>
                     <h1>Manage Users</h1>
                     <hr/>
                     <CreateButton content={this.props.content} handleClick={this.handleCreateClickUsers} />
@@ -53,7 +54,7 @@ class ContentContainer extends React.Component<ContentContainerProps, ContentCon
         }
         else if(this.props.content === 'citations') {
             return (
-                <div className="card-1">
+                <div>
                     <h1>Manage Citations</h1>
                     <hr/>
                     <CreateButton content={this.props.content} handleClick={this.handleCreateClickCitations} />
@@ -67,8 +68,10 @@ class ContentContainer extends React.Component<ContentContainerProps, ContentCon
 
     render() {
         return (
-            <div className="center-div">
+            <div className="center-div card-1">
                 <this.DisplayTable />
+                <br/>
+                <DataTable content={this.props.content} />
             </div>
         );
     }

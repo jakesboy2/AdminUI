@@ -7,10 +7,6 @@ interface NavbarProps {
 }
 
 class Navbar extends React.Component<NavbarProps> {
-    constructor(props: NavbarProps) {
-        super(props);
-    }
-
     render() {
         return (
             <nav>
