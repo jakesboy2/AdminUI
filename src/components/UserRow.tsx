@@ -8,10 +8,6 @@ interface UserRowProps {
 interface UserRowState {}
 
 class UserRow extends React.Component<UserRowProps, UserRowState> {
-    constructor(props: UserRowProps) {
-        super(props);
-    }
-
     render() {
         return (
             <tr key={this.props.user.id}>
